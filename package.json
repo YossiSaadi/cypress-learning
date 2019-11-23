@@ -1,0 +1,19 @@
+{
+  "name": "cypress-learning",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "cypress open",
+    "cy:run": "cypress run",
+    "cy:runspecific": "npx cypress run --spec 'cypress/integration/tests/Test1.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^3.6.1",
+    "electron": "^7.1.2"
+  },
+  "dependencies": {},
+  "description": ""
+}
