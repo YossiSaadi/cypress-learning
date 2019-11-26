@@ -1,5 +1,5 @@
-describe('My First Test', () => {
-  it('My First testcase - should do nothing special to do nothing', async () => {
+/*describe('My First Test', () => {
+  it('My First testcase - should do nothing special to do nothing', () => {
     cy.visit('https://rahulshettyacademy.com/seleniumPractise');
 
     // cy.get(`input[type='search']`).then(($input) => {
@@ -19,19 +19,23 @@ describe('My First Test', () => {
     //   })
     // });
 
-    cy.get(`input[type='search']`).type('ca');
-    cy.wait(2000);
-    cy.get('.products')
-      .find('.product')
-      .each(($product, index, $list) => {
-        const name = $product.find('.product-name').text();
-        if (name.includes('Capsi')) {
-          cy.wrap($product).find('button').click().should('be.eq', 'ADDED');
-          cy.get('').should('')
-        }
-      });
+    // cy.get(`input[type='search']`).type('ca');
+    // cy.get('.products')
+    //   .find('.product')
+    //   .each(($product, index, $list) => {
+    //     const name = $product.find('.product-name').text();
+    //     if (name.includes('Capsi')) {
+    //       cy.wrap($product).find('button').click();
+    //       cy.wrap($product).should('contain', 'ADDED');
+    //     }
+    //   });
+
+    // const logo = cy.get('.brand').then($logoElement => console.log($logoElement.text()));
+
+    cy.get('.brand').as('logo');
+    cy.get('@logo').click().should('have.text', 'GREENKART');
   });
-});
+});*/
 
 // const iterateByName = (list, name) => {
 //   list.each(($element, index, $list) => {
@@ -66,3 +70,21 @@ describe('My First Test', () => {
 //     throw new Error("Not Found");
 // }
 // });
+
+describe('My Second Test', () => {
+  it('My First testcase - should do nothing special to do nothing', () => {
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise');
+
+    cy.get(`input[type='search']`).type('ca');
+    cy.wait(2000);
+    cy.get('.products').as('productsList');
+    cy.get('@productsList')
+      .find('.product').as('product');
+    cy.get('@product').each(($product, index, $list) => {
+      const productTitle = $product.text();
+      if (productTitle.includes('Carrot'))
+        cy.wrap($product).find('.product-action').click();
+    });
+
+  })
+});
